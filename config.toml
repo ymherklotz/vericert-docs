@@ -1,6 +1,7 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Vericert"
+copyright = "© 2020-2021 Yann Herklotz"
 theme = "book"
 enableGitInfo = true
 pygmentsUseClasses = true
