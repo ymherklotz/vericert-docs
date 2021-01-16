@@ -1,7 +1,43 @@
+@font-face {
+  font-family: 'HK Grotesk';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('HK Grotesk Italic'), local('HKGrotesk-Italic'),
+       url('fonts/HKGrotesk-Italic.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('HK Grotesk'), local('HKGrotesk'),
+       url('fonts/HKGrotesk-Regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+}
+
+@font-face {
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('HK Grotesk Bold'), local('HKGrotesk-Bold'),
+       url('fonts/HKGrotesk-Bold.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+}
+
+@font-face {
+  font-family: 'Iosevka Fixed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Iosevka Fixed Regular'), local('IosevkaFixed-Regular'),
+       url('fonts/iosevka-fixed-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+}
+
 body {
   font-family: 'HK Grotesk', sans-serif;
 }
 
 code {
-  font-family: 'Iosevka', 'Roboto Mono' monospace;
+  font-family: 'Iosevka Fixed', 'Roboto Mono' monospace;
 }
