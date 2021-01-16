@@ -22,7 +22,7 @@ jobs:
         hugo-version: '0.80.0'
 
     - name: Generate documentation
-      run: cd docs && emacs --batch --no-init --load publish.el
+      run: emacs --batch --no-init --load publish.el
 
     - name: Generate website
       run: hugo --minify
