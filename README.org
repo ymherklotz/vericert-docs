@@ -1,0 +1,3 @@
+#+title: Vericert Documentation
+
+The documentation for [[https://github.com/ymherklotz/vericert][Vericert]], which is written in the [[/documentation.org][documentation.org]] file.
