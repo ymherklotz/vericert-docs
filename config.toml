@@ -1,4 +1,4 @@
-baseURL = "https://ymherklotz.github.io/vericert-docs/"
+baseURL = "https://vericert.ymhg.org"
 languageCode = "en-us"
 title = "Vericert"
 copyright = "© 2020-2021 Yann Herklotz"
