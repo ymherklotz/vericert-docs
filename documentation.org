@@ -349,8 +349,8 @@ example of the style, see the [[#example][example]] at the bottom of this file.
    :CUSTOM_ID: definitions-and-fixpoints
    :END:
 
-- It's okay to leave the return type of =Definition=s and =Fixpoint=s implicit
-  (e.g. =Definition x := 5= instead of =Definition x : nat := 5=) when the type is
+- It's okay to leave the return type of =Definition='s and =Fixpoint='s implicit
+  (e.g. ~Definition x := 5~ instead of ~Definition x : nat := 5~) when the type is
   very simple or obvious (for instance, the definition is in a file which deals
   exclusively with operations on =Z=).
 
@@ -440,7 +440,7 @@ example of the style, see the [[#example][example]] at the bottom of this file.
 
   - Example: =split; try lia; [ ]=.
 
-- Tactics that consist only of =repeat=ing a procedure (e.g. =repeat match=,
+- Tactics that consist only of =repeat=-ing a procedure (e.g. =repeat match=,
   =repeat first=) should factor out a single step of that procedure a separate
   tactic called =<tactic name>_step=, because the single-step version is much
   easier to debug. For instance:
