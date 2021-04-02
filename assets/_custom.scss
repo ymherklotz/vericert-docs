@@ -1,11 +1,39 @@
 @media (prefers-color-scheme: light) {
     @import "_syntax-light.scss";
+
+    #book-logo {
+        background-image: url("/vericert-main.svg");
+        height: 5rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 @media (prefers-color-scheme: dark) {
     @import "_syntax-dark.scss";
+
+    #book-logo {
+        background-image: url("/vericert-white.svg");
+        height: 5rem;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 .book-brand {
-    font-size: 3em;
+    padding-bottom: 1rem;
+}
+
+.book-brand p {
+    line-height: 1.3;
+    text-align: center;
+}
+
+.book-page {
+    background: var(--gray-100);
+    border-radius: 20px;
+}
+
+.markdown pre {
+    background-color: var(--body-background);
 }

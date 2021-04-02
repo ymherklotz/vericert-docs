@@ -188,6 +188,51 @@ $ echo $?
 50
 #+end_src
 
+** Unreleased Features
+:PROPERTIES:
+:EXPORT_FILE_NAME: unreleased
+:EXPORT_HUGO_SECTION: docs
+:END:
+
+The following are unreleased features in Vericert that are currently being worked on and have not been completely proven correct yet.  Currently this includes features such as:
+
+- [[#scheduling][scheduling]],
+- [[#if-conversion][if-conversion]],
+- [[#loop-pipelining][loop pipelining]], and
+- [[#functions][functions]].
+
+This page gives some preliminary information on how the features are implemented and how the proofs for the features are being done.  Once these features are properly implemented, they will be added to the proper documentation.
+
+*** Scheduling
+:PROPERTIES:
+:CUSTOM_ID: scheduling
+:END:
+
+Scheduling is an optimisation which is used to run
+*** Operation Chaining
+:PROPERTIES:
+:CUSTOM_ID: scheduling
+:END:
+
+Scheduling is an optimisation which is used to run
+*** If-conversion
+:PROPERTIES:
+:CUSTOM_ID: if-conversion
+:END:
+
+If-conversion
+*** Loop pipelining
+:PROPERTIES:
+:CUSTOM_ID: loop-pipelining
+:END:
+
+Loop pipelining
+*** Functions
+:PROPERTIES:
+:CUSTOM_ID: functions
+:END:
+
+Functions.
 * Coq Style Guide
   :PROPERTIES:
   :CUSTOM_ID: coq-style-guide
@@ -550,3 +595,26 @@ A small standalone Coq file that exhibits many of the style points.
     Notation "x '##'" := (bar x x) (at level 40) : Z_scope.
   End BarNotations.
 #+end_src
+
+* Future Work
+
+** Future Work
+:PROPERTIES:
+:EXPORT_FILE_NAME: future
+:END:
+
+This section contains future work that should be added to Vericert to make it into a better high-level synthesis tool.
+
+The next interesting optimisations that should be looked at are the following:
+
+- [[*Globals][Globals]]
+- [[*Type Support][Type Support]]
+- [[*Memory Partitioning][Memory Partitioning]]
+- [[*Operation Chaining][Operation Chaining]]
+
+*** Globals
+globals
+*** Type Support
+type support
+*** Memory Partitioning
+memory
