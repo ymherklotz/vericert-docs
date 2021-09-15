@@ -23,6 +23,14 @@ The project is currently a work in progress, so proofs remain to be finished.  C
 
 - [[/docs/building/][Vericert Documentation]]
 
+** Papers
+
+- OOPSLA '21 :: Yann Herklotz, James D. Pollard, Nadesh Ramanathan, and John Wickerson. Formal
+  Verification of High-Level Synthesis. In /Proc. ACM Program. Lang./ 5, OOPSLA, 2021. [[[/papers/fvhls_oopsla21.pdf][pdf]]]
+
+- LATTE '21 :: Yann Herklotz and John Wickerson. High-level synthesis tools should be proven
+  correct. In /Workshop on Languages, Tools, and Techniques for Accelerator Design/, 2021. [[[/papers/hlsspc_latte2021.pdf][pdf]]]
+
 * Index
 :PROPERTIES:
 :EXPORT_HUGO_SECTION: menu
