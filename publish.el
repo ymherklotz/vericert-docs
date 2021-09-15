@@ -10,5 +10,4 @@
 (require 'ox)
 (require 'ox-hugo)
 
-(find-file-literally "documentation.org")
 (org-hugo-export-wim-to-md :all-subtrees)
