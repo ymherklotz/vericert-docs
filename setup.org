@@ -2,8 +2,8 @@
 #+hugo_section: ./
 
 #+macro: link src_emacs-lisp[:results raw]{(ymhg/link "$1" "$2")}
-#+macro: texinfo_head (eval (if (eq org-export-current-backend 'texinfo) "#+exclude_tags: noexport_texinfo" ""))
-#+macro: latex_head (eval (if (eq org-export-current-backend 'latex) "#+exclude_tags: noexport_latex" ""))
+#+macro: texinfo_head (eval (if (eq org-export-current-backend 'texinfo) "#+exclude_tags: noexport_texinfo" "#+exclude_tags: onlyexport_texinfo"))
+#+macro: latex_head (eval (if (eq org-export-current-backend 'latex) "#+exclude_tags: noexport_latex" "#+exclude_tags: onlyexport_latex"))
 
 {{{texinfo_head}}}
 {{{latex_head}}}

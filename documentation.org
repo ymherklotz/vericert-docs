@@ -6,6 +6,7 @@
 * Vericert
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
+:CUSTOM_ID: vericert
 :END:
 
 A formally verified high-level synthesis (HLS) tool written in Coq, building on top of [[https://github.com/AbsInt/CompCert][CompCert]].
@@ -154,11 +155,11 @@ Or by running the test suite using the following command:
 #+begin_src shell
 make test
 #+end_src
-
 ** Using Vericert
 :PROPERTIES:
 :EXPORT_FILE_NAME: using-vericert
 :EXPORT_HUGO_SECTION: docs
+:CUSTOM_ID: using-vericert
 :END:
 
 Vericert can be used to translate a subset of C into Verilog.  As a simple example, consider the
@@ -222,6 +223,7 @@ $ echo $?
 :PROPERTIES:
 :EXPORT_FILE_NAME: unreleased
 :EXPORT_HUGO_SECTION: docs
+:CUSTOM_ID: unreleased-features
 :END:
 
 The following are unreleased features in Vericert that are currently being worked on and have not
