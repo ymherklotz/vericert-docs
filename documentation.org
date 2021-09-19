@@ -6,7 +6,6 @@
 * Vericert
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
-:EXPORT_DATE: <2021-01-16 Sat>
 :END:
 
 A formally verified high-level synthesis (HLS) tool written in Coq, building on top of [[https://github.com/AbsInt/CompCert][CompCert]].
@@ -268,6 +267,7 @@ Loop pipelining
 :END:
 
 Functions.
+
 * Coq Style Guide
   :PROPERTIES:
   :CUSTOM_ID: coq-style-guide
