@@ -1,0 +1,4 @@
+#+hugo_base_dir: ./
+#+hugo_section: ./
+
+#+macro: link src_emacs-lisp[:results raw]{(ymhg/link "$1" "$2")}

@@ -1,6 +1,7 @@
 #+title: Documentation
-#+hugo_base_dir: ./
-#+hugo_section: ./
+#+author: Yann Herklotz
+#+email: git@ymhg.org
+#+setupfile: setup.org
 
 * Vericert
 :PROPERTIES:
@@ -8,11 +9,15 @@
 :EXPORT_DATE: <2021-01-16 Sat>
 :END:
 
-A formally verified high-level synthesis (HLS) tool written in Coq, building on top of [[https://github.com/AbsInt/CompCert][CompCert]].  This ensures the correctness of the C to Verilog translation according to our Verilog semantics and CompCert's C semantics, removing the need to check the resulting hardware for behavioural correctness.
+A formally verified high-level synthesis (HLS) tool written in Coq, building on top of [[https://github.com/AbsInt/CompCert][CompCert]].
+This ensures the correctness of the C to Verilog translation according to our Verilog semantics and
+CompCert's C semantics, removing the need to check the resulting hardware for behavioural
+correctness.
 
 ** Features
 
-The project is currently a work in progress, so proofs remain to be finished.  Currently, the following C features are supported, but are not all proven correct yet:
+The project is currently a work in progress, so proofs remain to be finished.  Currently, the
+following C features are supported, but are not all proven correct yet:
 
 - all int operations,
 - non-recursive function calls,
@@ -21,7 +26,7 @@ The project is currently a work in progress, so proofs remain to be finished.  C
 
 ** Content
 
-- [[/docs/building/][Vericert Documentation]]
+- {{{link([[/docs/building/][Vericert Documentation]],[[#building][Vericert Documentation]])}}}
 
 ** Papers
 
@@ -38,8 +43,8 @@ The project is currently a work in progress, so proofs remain to be finished.  C
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :headless true
 :END:
 
-- [[/docs/][Docs]]
-  - [[/docs/building/][Building]]
+- {{{link([[/docs/][Docs]],[[#docs][Docs]])}}}
+  - {{{link([[/docs/building/][Building]],[[#building][Building]])}}}
 
 * Documentation
 
@@ -47,31 +52,40 @@ The project is currently a work in progress, so proofs remain to be finished.  C
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
 :EXPORT_HUGO_SECTION: docs
+:CUSTOM_ID: docs
 :END:
 
-Vericert translates C code into a hardware description language called Verilog, which can then be synthesised into hardware, to be placed onto a field-programmable gate array (FPGA) or application-specific integrated circuit (ASIC).
+Vericert translates C code into a hardware description language called Verilog, which can then be
+synthesised into hardware, to be placed onto a field-programmable gate array (FPGA) or
+application-specific integrated circuit (ASIC).
 
 #+attr_html: :width 600
 #+caption: Current design of Vericert, where HTL is an intermediate language representing a finite state machine with data-path (FSMD) and Verilog is the target language.
 #+name: fig:design
-[[/images/design.jpg]]
+{{{link([[/images/design.jpg]],[[./static/images/design.jpg]])}}}
 
-The design shown in Figure [[fig:design]] shows how Vericert leverages an existing verified C compiler called [[https://compcert.org/compcert-C.html][CompCert]] to perform this translation.
+The design shown in Figure [[fig:design]] shows how Vericert leverages an existing verified C compiler
+called [[https://compcert.org/compcert-C.html][CompCert]] to perform this translation.
 
 ** Building Vericert
 :PROPERTIES:
 :EXPORT_FILE_NAME: building
 :EXPORT_HUGO_SECTION: docs
+:CUSTOM_ID: building
 :END:
 
-To build Vericert, the provided Makefile can be used. External dependencies are needed to build the project, which can be pulled in automatically with [[https://nixos.org/nix/][nix]] using the provided ~default.nix~ and ~shell.nix~ files.
+To build Vericert, the provided Makefile can be used. External dependencies are needed to build the
+project, which can be pulled in automatically with [[https://nixos.org/nix/][nix]] using the provided ~default.nix~ and ~shell.nix~
+files.
 
-The project is written in Coq, a theorem prover, which is extracted to OCaml so that it can then be compiled and executed. The dependencies of this project are the following:
+The project is written in Coq, a theorem prover, which is extracted to OCaml so that it can then be
+compiled and executed. The dependencies of this project are the following:
 
 - [[https://coq.inria.fr/][Coq]]: theorem prover that is used to also program the HLS tool.
 - [[https://ocaml.org/][OCaml]]: the OCaml compiler to compile the extracted files.
 - [[https://github.com/mit-plv/bbv][bbv]]: an efficient bit vector library.
-- [[https://github.com/ocaml/dune][dune]]: build tool for ocaml projects to gather all the ocaml files and compile them in the right order.
+- [[https://github.com/ocaml/dune][dune]]: build tool for ocaml projects to gather all the ocaml files and compile them in the right
+  order.
 - [[http://gallium.inria.fr/~fpottier/menhir/][menhir]]: parser generator for ocaml.
 - [[https://github.com/ocaml/ocamlfind][findlib]] to find installed OCaml libraries.
 - [[https://gcc.gnu.org/][GCC]]: compiler to help build CompCert.
@@ -80,13 +94,16 @@ These dependencies can be installed manually, or automatically through Nix.
 
 *** Downloading CompCert
 
-CompCert is added as a submodule in the ~lib/CompCert~ directory. It is needed to run the build process below, as it is the one dependency that is not downloaded by nix, and has to be downloaded together with the repository. To clone CompCert together with this project, you can run:
+CompCert is added as a submodule in the ~lib/CompCert~ directory. It is needed to run the build
+process below, as it is the one dependency that is not downloaded by nix, and has to be downloaded
+together with the repository. To clone CompCert together with this project, you can run:
 
 #+begin_src shell
 git clone --recursive https://github.com/ymherklotz/vericert
 #+end_src
 
-If the repository is already cloned, you can run the following command to make sure that CompCert is also downloaded:
+If the repository is already cloned, you can run the following command to make sure that CompCert is
+also downloaded:
 
 #+begin_src shell
 git submodule update --init
@@ -94,7 +111,8 @@ git submodule update --init
 
 *** Setting up Nix
 
-Nix is a package manager that can create an isolated environment so that the builds are reproducible. Once nix is installed, it can be used in the following way.
+Nix is a package manager that can create an isolated environment so that the builds are
+reproducible. Once nix is installed, it can be used in the following way.
 
 To open a shell which includes all the necessary dependencies, one can use:
 
@@ -106,7 +124,8 @@ which will open a shell that has all the dependencies loaded.
 
 *** Makefile build
 
-If the dependencies were installed manually, or if one is in the ~nix-shell~, the project can be built by running:
+If the dependencies were installed manually, or if one is in the ~nix-shell~, the project can be built
+by running:
 
 #+begin_src shell
 make -j8
@@ -118,11 +137,13 @@ and installed locally, or under the ~PREFIX~ location using:
 make install
 #+end_src
 
-Which will install the binary in ~./bin/vericert~ by default. However, this can be changed by changing the ~PREFIX~ environment variable, in which case the binary will be installed in ~$PREFIX/bin/vericert~.
+Which will install the binary in ~./bin/vericert~ by default. However, this can be changed by changing
+the ~PREFIX~ environment variable, in which case the binary will be installed in ~$PREFIX/bin/vericert~.
 
 *** Testing
 
-To test out ~vericert~ you can try the following examples which are in the test folder using the following:
+To test out ~vericert~ you can try the following examples which are in the test folder using the
+following:
 
 #+begin_src shell
 ./bin/vericert test/loop.c -o loop.v
@@ -142,7 +163,8 @@ make test
 :EXPORT_HUGO_SECTION: docs
 :END:
 
-Vericert can be used to translate a subset of C into Verilog.  As a simple example, consider the following C file (~main.c~):
+Vericert can be used to translate a subset of C into Verilog.  As a simple example, consider the
+following C file (~main.c~):
 
 #+begin_src C
 void matrix_multiply(int first[2][2], int second[2][2], int multiply[2][2]) {
@@ -170,26 +192,28 @@ int main() {
 
 It can be compiled using the following command, assuming that vericert is somewhere on the path.
 
-#+begin_src
+#+begin_src shell
 vericert main.c -o main.v
 #+end_src
 
-The Verilog file contains a top-level test-bench, which can be given to any Verilog simulator to simulate the hardware, which should give the same result as executing the C code.  Using [[http://iverilog.icarus.com/][Icarus Verilog]] as an example:
+The Verilog file contains a top-level test-bench, which can be given to any Verilog simulator to
+simulate the hardware, which should give the same result as executing the C code.  Using [[http://iverilog.icarus.com/][Icarus
+Verilog]] as an example:
 
-#+begin_src
+#+begin_src shell
 iverilog -o main_v main.v
 #+end_src
 
 When executing, it should therefore print the following:
 
-#+begin_src
+#+begin_src shell
 $ ./main_v
 finished: 50
 #+end_src
 
 This gives the same result as executing the C in the following way:
 
-#+begin_src
+#+begin_src shell
 $ gcc -o main_c main.c
 $ ./main_c
 $ echo $?
@@ -202,14 +226,17 @@ $ echo $?
 :EXPORT_HUGO_SECTION: docs
 :END:
 
-The following are unreleased features in Vericert that are currently being worked on and have not been completely proven correct yet.  Currently this includes features such as:
+The following are unreleased features in Vericert that are currently being worked on and have not
+been completely proven correct yet.  Currently this includes features such as:
 
 - [[#scheduling][scheduling]],
 - [[#if-conversion][if-conversion]],
 - [[#loop-pipelining][loop pipelining]], and
 - [[#functions][functions]].
 
-This page gives some preliminary information on how the features are implemented and how the proofs for the features are being done.  Once these features are properly implemented, they will be added to the proper documentation.
+This page gives some preliminary information on how the features are implemented and how the proofs
+for the features are being done.  Once these features are properly implemented, they will be added
+to the proper documentation.
 
 *** Scheduling
 :PROPERTIES:
@@ -246,10 +273,10 @@ Functions.
   :CUSTOM_ID: coq-style-guide
   :EXPORT_FILE_NAME: coq-style-guide
   :END:
-This style guide was taken from [[https://github.com/project-oak/silveroak][Silveroak]], it outlines code style for Coq code
-in this repository. There are certainly other valid strategies and opinions on
-Coq code style; this is laid out purely in the name of consistency. For a visual
-example of the style, see the [[#example][example]] at the bottom of this file.
+This style guide was taken from [[https://github.com/project-oak/silveroak][Silveroak]], it outlines code style for Coq code in this
+repository. There are certainly other valid strategies and opinions on Coq code style; this is laid
+out purely in the name of consistency. For a visual example of the style, see the [[#example][example]] at the
+bottom of this file.
 
 ** Code organization
    :PROPERTIES:
@@ -260,24 +287,22 @@ example of the style, see the [[#example][example]] at the bottom of this file.
     :CUSTOM_ID: legal-banner
     :END:
 
-- Files should begin with a copyright/license banner, as shown in the example
-  above.
+- Files should begin with a copyright/license banner, as shown in the example above.
 
 *** Import statements
     :PROPERTIES:
     :CUSTOM_ID: import-statements
     :END:
 
-- =Require Import= statements should all go at the top of the file, followed by
-  file-wide =Import= statements.
+- =Require Import= statements should all go at the top of the file, followed by file-wide =Import=
+  statements.
 
-  - =Import=s often contain notations or typeclass instances that might override
-    notations or instances from another library, so it's nice to highlight them
-    separately.
+  - =Import=s often contain notations or typeclass instances that might override notations or
+    instances from another library, so it's nice to highlight them separately.
 
 - One =Require Import= statement per line; it's easier to scan that way.
-- =Require Import= statements should use "fully-qualified" names (e.g. =Require
-  Import Coq.ZArith.ZArith= instead of =Require Import ZArith=).
+- =Require Import= statements should use "fully-qualified" names (e.g. =Require Import
+  Coq.ZArith.ZArith= instead of =Require Import ZArith=).
 
   - Use the =Locate= command to find the fully-qualified name!
 
@@ -287,26 +312,25 @@ example of the style, see the [[#example][example]] at the bottom of this file.
   2. External dependencies (anything outside the current project)
   3. Same-project dependencies
 
-- =Require Import='s with the same root library (the name before the first =.=)
-  should be grouped together. Within each root-library group, they should be in
-  alphabetical order (so =Coq.Lists.List= before =Coq.ZArith.ZArith=).
+- =Require Import='s with the same root library (the name before the first =.=) should be grouped
+  together. Within each root-library group, they should be in alphabetical order (so =Coq.Lists.List=
+  before =Coq.ZArith.ZArith=).
 
 *** Notations and scopes
     :PROPERTIES:
     :CUSTOM_ID: notations-and-scopes
     :END:
 
-- Any file-wide =Local Open Scope='s should come immediately after the =Import=s
-  (see example).
+- Any file-wide =Local Open Scope='s should come immediately after the =Import=s (see example).
 
-  - Always use =Local Open Scope=; just =Open Scope= will sneakily open the scope
-    for those who import your file.
+  - Always use =Local Open Scope=; just =Open Scope= will sneakily open the scope for those who import
+    your file.
 
-- Put notations in their own separate modules or files, so that those who import
-  your file can choose whether or not they want the notations.
+- Put notations in their own separate modules or files, so that those who import your file can
+  choose whether or not they want the notations.
 
-  - Conflicting notations can cause a lot of headache, so it comes in very handy
-    to leave this flexibility!
+  - Conflicting notations can cause a lot of headache, so it comes in very handy to leave this
+    flexibility!
 
 ** Formatting
    :PROPERTIES:
@@ -319,9 +343,8 @@ example of the style, see the [[#example][example]] at the bottom of this file.
 
 - Maximum line length 80 characters.
 
-  - Many Coq IDE setups divide the screen in half vertically and use only half
-    to display source code, so more than 80 characters can be genuinely hard to
-    read on a laptop.
+  - Many Coq IDE setups divide the screen in half vertically and use only half to display source
+    code, so more than 80 characters can be genuinely hard to read on a laptop.
 
 *** Whitespace and indentation
     :PROPERTIES:
@@ -336,14 +359,13 @@ example of the style, see the [[#example][example]] at the bottom of this file.
 
   - Many editors do this automatically on save.
 
-- Colons may be either "English-spaced", with no space before the colon and one
-  space after (=x: nat=) or "French-spaced", with one space before and after (=x :
-  nat=).
+- Colons may be either "English-spaced", with no space before the colon and one space after (=x: nat=)
+  or "French-spaced", with one space before and after (=x : nat=).
 
 - Default indentation is 2 spaces.
 
-  - Keeping this small prevents complex proofs from being indented ridiculously
-    far, and matches IDE defaults.
+  - Keeping this small prevents complex proofs from being indented ridiculously far, and matches IDE
+    defaults.
 
 - Use 2-space indents if inserting a line break immediately after:
 
@@ -352,10 +374,10 @@ example of the style, see the [[#example][example]] at the bottom of this file.
   - =forall <...>,=
   - =exists <....>,=
 
-- The style for indenting arguments in function application depends on where you
-  make a line break. If you make the line break immediately after the function
-  name, use a 2-space indent. However, if you make it after one or more
-  arguments, align the next line with the first argument:
+- The style for indenting arguments in function application depends on where you make a line
+  break. If you make the line break immediately after the function name, use a 2-space
+  indent. However, if you make it after one or more arguments, align the next line with the first
+  argument:
 
   #+begin_src coq
     (Z.pow
@@ -373,8 +395,8 @@ example of the style, see the [[#example][example]] at the bottom of this file.
     .
   #+end_src
 
-- =match= or =lazymatch= cases should line up with the "m" in =match= or "l" in
-  =lazymatch=, as in the following examples:
+- =match= or =lazymatch= cases should line up with the "m" in =match= or "l" in =lazymatch=, as in the
+  following examples:
 
   #+begin_src coq
     match x with
@@ -402,19 +424,17 @@ example of the style, see the [[#example][example]] at the bottom of this file.
    :CUSTOM_ID: definitions-and-fixpoints
    :END:
 
-- It's okay to leave the return type of =Definition='s and =Fixpoint='s implicit
-  (e.g. ~Definition x := 5~ instead of ~Definition x : nat := 5~) when the type is
-  very simple or obvious (for instance, the definition is in a file which deals
-  exclusively with operations on =Z=).
+- It's okay to leave the return type of =Definition='s and =Fixpoint='s implicit (e.g. ~Definition x := 5~
+  instead of ~Definition x : nat := 5~) when the type is very simple or obvious (for instance, the
+  definition is in a file which deals exclusively with operations on =Z=).
 
 ** Inductives
    :PROPERTIES:
    :CUSTOM_ID: inductives
    :END:
 
-- The =.= ending an =Inductive= can be either on the same line as the last case or
-  on its own line immediately below. That is, both of the following are
-  acceptable:
+- The =.= ending an =Inductive= can be either on the same line as the last case or on its own line
+  immediately below. That is, both of the following are acceptable:
 
   #+begin_src coq
     Inductive Foo : Type :=
@@ -431,72 +451,62 @@ example of the style, see the [[#example][example]] at the bottom of this file.
    :CUSTOM_ID: lemmatheorem-statements
    :END:
 
-- Generally, use =Theorem= for the most important, top-level facts you prove and
-  =Lemma= for everything else.
+- Generally, use =Theorem= for the most important, top-level facts you prove and =Lemma= for everything
+  else.
 - Insert a line break after the colon in the lemma statement.
 - Insert a line break after the comma for =forall= or =exist= quantifiers.
-- Implication arrows (=->=) should share a line with the previous hypothesis, not
-  the following one.
-- There is no need to make a line break after every =->=; short preconditions may
-  share a line.
+- Implication arrows (=->=) should share a line with the previous hypothesis, not the following one.
+- There is no need to make a line break after every =->=; short preconditions may share a line.
 
 ** Proofs and tactics
    :PROPERTIES:
    :CUSTOM_ID: proofs-and-tactics
    :END:
 
-- Use the =Proof= command (lined up vertically with =Lemma= or =Theorem= it
-  corresponds to) to open a proof, and indent the first line after it 2 spaces.
+- Use the =Proof= command (lined up vertically with =Lemma= or =Theorem= it corresponds to) to open a
+  proof, and indent the first line after it 2 spaces.
 
-- Very small proofs (where =Proof. <tactics> Qed.= is <= 80 characters) can go all
-  in one line.
+- Very small proofs (where =Proof. <tactics> Qed.= is <= 80 characters) can go all in one line.
 
-- When ending a proof, align the ending statement (=Qed=, =Admitted=, etc.) with
-  =Proof=.
+- When ending a proof, align the ending statement (=Qed=, =Admitted=, etc.) with =Proof=.
 
-- Avoid referring to autogenerated names (e.g. =H0=, =n0=). It's okay to let Coq
-  generate these names, but you should not explicitly refer to them in your
-  proof. So =intros; my_solver= is fine, but =intros; apply H1; my_solver= is not
-  fine.
+- Avoid referring to autogenerated names (e.g. =H0=, =n0=). It's okay to let Coq generate these names,
+  but you should not explicitly refer to them in your proof. So =intros; my_solver= is fine, but
+  =intros; apply H1; my_solver= is not fine.
 
-  - You can force a non-autogenerated name by either putting the variable before
-    the colon in the lemma statement (=Lemma foo x : ...= instead of =Lemma foo :
-    forall x, ...=), or by passing arguments to =intros= (e.g. =intros ? x= to name
-    the second argument =x=)
+  - You can force a non-autogenerated name by either putting the variable before the colon in the
+    lemma statement (=Lemma foo x : ...= instead of =Lemma foo : forall x, ...=), or by passing
+    arguments to =intros= (e.g. =intros ? x= to name the second argument =x=)
 
-- This way, the proof won't break when new hypotheses are added or autogenerated
-  variable names change.
+- This way, the proof won't break when new hypotheses are added or autogenerated variable names
+  change.
 
 - Use curly braces ={}= for subgoals, instead of bullets.
 
-- /Never write tactics with more than one subgoal focused./ This can make the
-  proof very confusing to step through! If you have more than one subgoal, use
-  curly braces.
+- /Never write tactics with more than one subgoal focused./ This can make the proof very confusing to
+  step through! If you have more than one subgoal, use curly braces.
 
-- Consider adding a comment after the opening curly brace that explains what
-  case you're in (see example).
+- Consider adding a comment after the opening curly brace that explains what case you're in (see
+  example).
 
-  - This is not necessary for small subgoals but can help show the major lines
-    of reasoning in large proofs.
+  - This is not necessary for small subgoals but can help show the major lines of reasoning in large
+    proofs.
 
-- If invoking a tactic that is expected to return multiple subgoals, use =[ |
-  ... | ]= before the =.= to explicitly specify how many subgoals you expect.
+- If invoking a tactic that is expected to return multiple subgoals, use =[ | ... | ]= before the =.= to
+  explicitly specify how many subgoals you expect.
 
   - Examples: =split; [ | ].= =induction z; [ | | ].=
-  - This helps make code more maintainable, because it fails immediately if your
-    tactic no longer solves as many subgoals as expected (or unexpectedly solves
-    more).
+  - This helps make code more maintainable, because it fails immediately if your tactic no longer
+    solves as many subgoals as expected (or unexpectedly solves more).
 
-- If invoking a string of tactics (composed by =;=) that will break the goal into
-  multiple subgoals and then solve all but one, still use =[ ]= to enforce that
-  all but one goal is solved.
+- If invoking a string of tactics (composed by =;=) that will break the goal into multiple subgoals
+  and then solve all but one, still use =[ ]= to enforce that all but one goal is solved.
 
   - Example: =split; try lia; [ ]=.
 
-- Tactics that consist only of =repeat=-ing a procedure (e.g. =repeat match=,
-  =repeat first=) should factor out a single step of that procedure a separate
-  tactic called =<tactic name>_step=, because the single-step version is much
-  easier to debug. For instance:
+- Tactics that consist only of =repeat=-ing a procedure (e.g. =repeat match=, =repeat first=) should
+  factor out a single step of that procedure a separate tactic called =<tactic name>_step=, because
+  the single-step version is much easier to debug. For instance:
 
   #+begin_src coq
     Ltac crush_step :=
@@ -512,12 +522,11 @@ example of the style, see the [[#example][example]] at the bottom of this file.
    :CUSTOM_ID: naming
    :END:
 
-- Helper proofs about standard library datatypes should go in a module that is
-  named to match the standard library module (see example).
+- Helper proofs about standard library datatypes should go in a module that is named to match the
+  standard library module (see example).
 
-  - This makes the helper proofs look like standard-library ones, which is
-    helpful for categorizing them if they're genuinely at the standard-library
-    level of abstraction.
+  - This makes the helper proofs look like standard-library ones, which is helpful for categorizing
+    them if they're genuinely at the standard-library level of abstraction.
 
 - Names of modules should start with capital letters.
 - Names of inductives and their constructors should start with capital letters.
@@ -611,7 +620,8 @@ A small standalone Coq file that exhibits many of the style points.
 :EXPORT_FILE_NAME: future
 :END:
 
-This section contains future work that should be added to Vericert to make it into a better high-level synthesis tool.
+This section contains future work that should be added to Vericert to make it into a better
+high-level synthesis tool.
 
 The next interesting optimisations that should be looked at are the following:
 
