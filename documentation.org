@@ -5,7 +5,6 @@
 * Vericert
 :PROPERTIES:
 :EXPORT_FILE_NAME: _index
-:EXPORT_DATE: <2021-01-16 Sat>
 :END:
 
 A formally verified high-level synthesis (HLS) tool written in Coq, building on top of [[https://github.com/AbsInt/CompCert][CompCert]].  This ensures the correctness of the C to Verilog translation according to our Verilog semantics and CompCert's C semantics, removing the need to check the resulting hardware for behavioural correctness.
@@ -187,6 +186,38 @@ $ ./main_c
 $ echo $?
 50
 #+end_src
+
+** Scheduling
+:PROPERTIES:
+:EXPORT_FILE_NAME: scheduling
+:EXPORT_HUGO_SECTION: docs
+:END:
+
+Scheduling
+
+** If-conversion
+:PROPERTIES:
+:EXPORT_FILE_NAME: if-conversion
+:EXPORT_HUGO_SECTION: docs
+:END:
+
+If-conversion
+
+** Loop pipelining
+:PROPERTIES:
+:EXPORT_FILE_NAME: loop-pipelining
+:EXPORT_HUGO_SECTION: docs
+:END:
+
+Loop pipelining
+
+** Functions
+:PROPERTIES:
+:EXPORT_FILE_NAME: function-support
+:EXPORT_HUGO_SECTION: docs
+:END:
+
+Functions.
 
 * Coq Style Guide
   :PROPERTIES:
@@ -550,3 +581,4 @@ A small standalone Coq file that exhibits many of the style points.
     Notation "x '##'" := (bar x x) (at level 40) : Z_scope.
   End BarNotations.
 #+end_src
+
