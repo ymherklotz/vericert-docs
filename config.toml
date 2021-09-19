@@ -15,7 +15,7 @@ pygmentsUseClasses = true
 [menu]
 
 [[menu.after]]
-  name = "Github⤴"
+  name = "Github"
   url = "https://github.com/ymherklotz/vericert"
   weight = 10
 
