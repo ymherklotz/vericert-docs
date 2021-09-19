@@ -30,10 +30,10 @@ following C features are supported, but are not all proven correct yet:
 ** Papers
 
 - OOPSLA '21 :: Yann Herklotz, James D. Pollard, Nadesh Ramanathan, and John Wickerson. Formal
-  Verification of High-Level Synthesis. In /Proc. ACM Program. Lang./ 5, OOPSLA, 2021. [[[/papers/fvhls_oopsla21.pdf][pdf]]]
+  Verification of High-Level Synthesis. In /Proc. ACM Program. Lang./ 5, OOPSLA, 2021. [{{{link([[/papers/fvhls_oopsla21.pdf][pdf]],[[./static/papers/fvhls_oopsla21.pdf][pdf]])}}}]
 
 - LATTE '21 :: Yann Herklotz and John Wickerson. High-level synthesis tools should be proven
-  correct. In /Workshop on Languages, Tools, and Techniques for Accelerator Design/, 2021. [[[/papers/hlsspc_latte2021.pdf][pdf]]]
+  correct. In /Workshop on Languages, Tools, and Techniques for Accelerator Design/, 2021. [{{{link([[/papers/hlsspc_latte2021.pdf][pdf]],[[./static/papers/hlsspc_latte2021.pdf][pdf]])}}}]
 
 * Index
 :PROPERTIES:
@@ -82,7 +82,6 @@ compiled and executed. The dependencies of this project are the following:
 
 - [[https://coq.inria.fr/][Coq]]: theorem prover that is used to also program the HLS tool.
 - [[https://ocaml.org/][OCaml]]: the OCaml compiler to compile the extracted files.
-- [[https://github.com/mit-plv/bbv][bbv]]: an efficient bit vector library.
 - [[https://github.com/ocaml/dune][dune]]: build tool for ocaml projects to gather all the ocaml files and compile them in the right
   order.
 - [[http://gallium.inria.fr/~fpottier/menhir/][menhir]]: parser generator for ocaml.
