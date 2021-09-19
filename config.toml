@@ -1,6 +1,6 @@
 baseURL = "https://vericert.ymhg.org"
 languageCode = "en-us"
-title = "Vericert"
+# title = "Vericert"
 copyright = "© 2020-2021 Yann Herklotz"
 theme = "book"
 enableGitInfo = true
