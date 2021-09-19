@@ -1,6 +1,6 @@
 baseURL = "https://vericert.ymhg.org"
-languageCode = "en-us"
-# title = "Vericert"
+languageCode = "en-uk"
+title = "Vericert"
 copyright = "© 2020-2021 Yann Herklotz"
 theme = "book"
 enableGitInfo = true
@@ -15,7 +15,7 @@ pygmentsUseClasses = true
 [menu]
 
 [[menu.after]]
-  name = "Github"
+  name = "Github⤴"
   url = "https://github.com/ymherklotz/vericert"
   weight = 10
 
@@ -24,3 +24,6 @@ pygmentsUseClasses = true
   BookSection = "/"
   BookRepo = "https://github.com/ymherklotz/vericert"
   BookSearch = true
+
+[permalinks]
+  blog = '/:year/:month/:title/'

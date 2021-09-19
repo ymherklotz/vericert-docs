@@ -21,7 +21,7 @@ following C features are supported, but are not all proven correct yet:
 
 - all int operations,
 - non-recursive function calls,
-- local arrays and pointers
+- local arrays and pointers, and
 - control-flow structures such as if-statements, for-loops, etc...
 
 ** Content
@@ -230,8 +230,8 @@ The following are unreleased features in Vericert that are currently being worke
 been completely proven correct yet.  Currently this includes features such as:
 
 - [[#scheduling][scheduling]],
-- [[#if-conversion][if-conversion]],
-- [[#loop-pipelining][loop pipelining]], and
+- [[#operation-chaining][operation chaining]],
+- [[#if-conversion][if-conversion]], and
 - [[#functions][functions]].
 
 This page gives some preliminary information on how the features are implemented and how the proofs
@@ -243,54 +243,58 @@ to the proper documentation.
 :CUSTOM_ID: scheduling
 :END:
 
-Scheduling is an optimisation which is used to run
+Scheduling is an optimisation which is used to run various instructions in parallel that are
+independent to each other.
+
 *** Operation Chaining
 :PROPERTIES:
-:CUSTOM_ID: scheduling
+:CUSTOM_ID: operation-chaining
 :END:
 
-Scheduling is an optimisation which is used to run
+Operation chaining is an optimisation that can be added on to scheduling and allows for the
+sequential execution of instructions in a clock cycle, while executing other instructions in
+parallel in the same clock cycle.
+
 *** If-conversion
 :PROPERTIES:
 :CUSTOM_ID: if-conversion
 :END:
 
-If-conversion
-*** Loop pipelining
-:PROPERTIES:
-:CUSTOM_ID: loop-pipelining
-:END:
+If-conversion is an optimisation which can turn code with simple control flow into a single block
+(called a hyper-block), using predicated instructions.
 
-Loop pipelining
 *** Functions
 :PROPERTIES:
 :CUSTOM_ID: functions
 :END:
 
-Functions.
+Functions are currently only inlined in Vericert, however, we are working on a proper interface to
+integrate function calls into the hardware.
 
-* Coq Style Guide
+** Coq Style Guide
   :PROPERTIES:
   :CUSTOM_ID: coq-style-guide
   :EXPORT_FILE_NAME: coq-style-guide
+  :EXPORT_HUGO_SECTION: docs
   :END:
+
 This style guide was taken from [[https://github.com/project-oak/silveroak][Silveroak]], it outlines code style for Coq code in this
 repository. There are certainly other valid strategies and opinions on Coq code style; this is laid
 out purely in the name of consistency. For a visual example of the style, see the [[#example][example]] at the
 bottom of this file.
 
-** Code organization
+*** Code organization
    :PROPERTIES:
    :CUSTOM_ID: code-organization
    :END:
-*** Legal banner
+**** Legal banner
     :PROPERTIES:
     :CUSTOM_ID: legal-banner
     :END:
 
 - Files should begin with a copyright/license banner, as shown in the example above.
 
-*** Import statements
+**** Import statements
     :PROPERTIES:
     :CUSTOM_ID: import-statements
     :END:
@@ -317,7 +321,7 @@ bottom of this file.
   together. Within each root-library group, they should be in alphabetical order (so =Coq.Lists.List=
   before =Coq.ZArith.ZArith=).
 
-*** Notations and scopes
+**** Notations and scopes
     :PROPERTIES:
     :CUSTOM_ID: notations-and-scopes
     :END:
@@ -333,11 +337,11 @@ bottom of this file.
   - Conflicting notations can cause a lot of headache, so it comes in very handy to leave this
     flexibility!
 
-** Formatting
+*** Formatting
    :PROPERTIES:
    :CUSTOM_ID: formatting
    :END:
-*** Line length
+**** Line length
     :PROPERTIES:
     :CUSTOM_ID: line-length
     :END:
@@ -347,7 +351,7 @@ bottom of this file.
   - Many Coq IDE setups divide the screen in half vertically and use only half to display source
     code, so more than 80 characters can be genuinely hard to read on a laptop.
 
-*** Whitespace and indentation
+**** Whitespace and indentation
     :PROPERTIES:
     :CUSTOM_ID: whitespace-and-indentation
     :END:
@@ -420,7 +424,7 @@ bottom of this file.
          end.
   #+end_src
 
-** Definitions and Fixpoints
+*** Definitions and Fixpoints
    :PROPERTIES:
    :CUSTOM_ID: definitions-and-fixpoints
    :END:
@@ -429,7 +433,7 @@ bottom of this file.
   instead of ~Definition x : nat := 5~) when the type is very simple or obvious (for instance, the
   definition is in a file which deals exclusively with operations on =Z=).
 
-** Inductives
+*** Inductives
    :PROPERTIES:
    :CUSTOM_ID: inductives
    :END:
@@ -447,7 +451,7 @@ bottom of this file.
     | FooB : Foo.
   #+end_src
 
-** Lemma/Theorem statements
+*** Lemma/Theorem statements
    :PROPERTIES:
    :CUSTOM_ID: lemmatheorem-statements
    :END:
@@ -459,7 +463,7 @@ bottom of this file.
 - Implication arrows (=->=) should share a line with the previous hypothesis, not the following one.
 - There is no need to make a line break after every =->=; short preconditions may share a line.
 
-** Proofs and tactics
+*** Proofs and tactics
    :PROPERTIES:
    :CUSTOM_ID: proofs-and-tactics
    :END:
@@ -518,7 +522,7 @@ bottom of this file.
     Ltac crush := repeat crush_step.
   #+end_src
 
-** Naming
+*** Naming
    :PROPERTIES:
    :CUSTOM_ID: naming
    :END:
@@ -533,7 +537,7 @@ bottom of this file.
 - Names of inductives and their constructors should start with capital letters.
 - Names of other definitions/lemmas should be snake case.
 
-** Example
+*** Example
    :PROPERTIES:
    :CUSTOM_ID: example
    :END:
@@ -613,6 +617,62 @@ A small standalone Coq file that exhibits many of the style points.
     Notation "x '##'" := (bar x x) (at level 40) : Z_scope.
   End BarNotations.
 #+end_src
+* Blog
+** Blog
+:PROPERTIES:
+:EXPORT_FILE_NAME: _index
+:EXPORT_HUGO_SECTION: blog
+:CUSTOM_ID: blog
+:END:
+
+Blog posts
+
+** TODO A First Look at Vericert :introduction:summary:@article:
+:PROPERTIES:
+:EXPORT_DATE: 2021-09-07
+:EXPORT_FILE_NAME: introduction-to-vericert
+:EXPORT_HUGO_SECTION: blog
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary "Vericert is a formally verified high-level synthesis tool, translating C code into a hardware design expressed in Verilog."
+:CUSTOM_ID: introduction-to-vericert
+:END:
+
+Compilers are increasingly being relied upon to produce binaries from code without introducing any
+bugs in the process.  Therefore, formally verified compilers like [[https://compcert.org][CompCert]] were introduced to
+formally prove that the compilation process does not change the behaviour of the program.  This
+allowed companies like Airbus to move critical code from pure assembly to C.
+
+Similarly, the hardware industry in general mainly uses hardware description languages, such as
+Verilog or VHDL, to design their hardware, which can then either be placed on an FPGA for quick
+testing, or eventually turned into an ASIC.  As there are many commercial tools available for the
+verification of HDLs, designers prefer to have full control over the hardware and therefore use the
+HDL directly.  Alternatives exist, such as high-level synthesis tools (HLS), or higher-level
+hardware description languages.
+
+So why not use higher-level HDLs then? They seem to solve all the problems that current HDLs face.
+Well, the adoption is hindered by the fact that even though it seems like the perfect solution to
+have a new language dedicated to hardware design that provides a higher-level of abstraction than
+existing HDLs, the fact is that the syntax and semantics of such a language often change drastically
+compared to the existing HDLs which everyone is familiar with.  It is already the case that there is
+a shortage of hardware designers, and it is therefore even more unlikely that these hardware
+designers would know an alternative hardware design language.
+
+HLS, on the other hand, tackles the problem from a different perspective, and instead ideally aims
+to bring hardware design to the software designer.  This is achieved by compiling a subset of valid
+software programs directly into hardware, therefore making it much easier to get started with
+hardware design and write algorithms in hardware.  This not only brings hardware design to a larger
+number of people, but also brings all the benefits of the software ecosystem to verify the hardware
+designs and algorithms.  The following sections will describe the benefits and drawbacks of HLS in
+more detail, as well as why one would even consider having to formally verify the translation as
+well.
+
+*** A bit about HLS
+
+*** How do we formally verify it?
+
+*** Useful links
+
+- [[https://yannherklotz.com/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]]
+- [[https://github.com/ymherklotz/vericert][Github repository]]
 
 * Future Work
 
@@ -626,14 +686,44 @@ high-level synthesis tool.
 
 The next interesting optimisations that should be looked at are the following:
 
-- [[*Globals][Globals]]
-- [[*Type Support][Type Support]]
-- [[*Memory Partitioning][Memory Partitioning]]
-- [[*Operation Chaining][Operation Chaining]]
+- [[#globals][globals]],
+- [[#type-support][type support]],
+- [[#memory-partitioning][memory partitioning]], and
+- [[#loop-pipelining][loop pipelining]].
 
 *** Globals
-globals
+:PROPERTIES:
+:CUSTOM_ID: globals
+:END:
+
+Globals are an important feature to add, as have to be handled carefully in HLS, because they have
+to be placed into memory, and are often used in HLS designs.  Proper handling of globals would allow
+for a larger subset of programs to be compiled, even allowing for larger benchmarks to be used, such
+as CHStone.
+
 *** Type Support
-type support
+:PROPERTIES:
+:CUSTOM_ID: type-support
+:END:
+
+It would also be useful to have support for other datatypes in C, such as ~char~ or ~short~, as using
+these small datatypes is also quite popular in HLS to make the final designs more efficient.
+
 *** Memory Partitioning
-memory
+:PROPERTIES:
+:CUSTOM_ID: memory-partitioning
+:END:
+
+Memory partitioning is quite an advanced optimisation, which could be combined with the support for
+globals so as to make memory layouts on the FPGA more efficient and run various memory operations in
+parallel.
+
+*** Loop pipelining
+:PROPERTIES:
+:CUSTOM_ID: loop-pipelining
+:END:
+
+Loop pipelining is an optimisation to schedule loops, instead of only scheduling the instructions
+inside of the loop.  There are two versions of loop pipelining, software and hardware loop
+pipelining.  The former is done purely on instructions, whereas the latter is performed in tandem
+with [[#scheduling][scheduling]].
