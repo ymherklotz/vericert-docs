@@ -16,8 +16,8 @@ correctness.
 
 ** Features
 
-The project is currently a work in progress, so proofs remain to be finished.  Currently, the
-following C features are supported, but are not all proven correct yet:
+The project is currently a work in progress.  Currently, the following C features are supported and
+have all been proven correct, providing a verified translation from C to Verilog:
 
 - all int operations,
 - non-recursive function calls,
