@@ -625,27 +625,33 @@ A small standalone Coq file that exhibits many of the style points.
 :CUSTOM_ID: blog
 :END:
 
-Blog posts
+Blog posts:
 
 ** TODO A First Look at Vericert :introduction:summary:@article:
 :PROPERTIES:
-:EXPORT_DATE: 2021-09-07
-:EXPORT_FILE_NAME: introduction-to-vericert
+:EXPORT_DATE: 2021-09-21
+:EXPORT_FILE_NAME: a-first-look-at-vericert
 :EXPORT_HUGO_SECTION: blog
 :EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary "Vericert is a formally verified high-level synthesis tool, translating C code into a hardware design expressed in Verilog."
-:CUSTOM_ID: introduction-to-vericert
+:CUSTOM_ID: a-first-look-at-vericert
 :END:
+
+#+attr_html: :width 400px
+[[/images/vericert-logo-handdrawn.svg]]
 
 Compilers are increasingly being relied upon to produce binaries from code without introducing any
 bugs in the process.  Therefore, formally verified compilers like [[https://compcert.org][CompCert]] were introduced to
 formally prove that the compilation process does not change the behaviour of the program.  This
 allowed companies like Airbus to move critical code from pure assembly to C.
 
-Similarly, the hardware industry in general mainly uses hardware description languages, such as
-Verilog or VHDL, to design their hardware, which can then either be placed on an FPGA for quick
-testing, or eventually turned into an ASIC.  As there are many commercial tools available for the
-verification of HDLs, designers prefer to have full control over the hardware and therefore use the
-HDL directly.  Alternatives exist, such as high-level synthesis tools (HLS), or higher-level
+Similarly, the hardware industry mainly uses hardware description languages, such as Verilog or
+VHDL, to design their hardware, which can then either be placed onto an FPGA for quick testing, or
+eventually turned into an ASIC.  As there are many commercial tools available for the verification
+of HDLs, designers prefer to have full control over the hardware and therefore use HDLs directly.
+However, there are a few downsides with using an HDL instead of higher-level abstractions.  First,
+it makes is computationally harder to check the functionality of hardware, as it needs to be
+simulated.  Second, it often requires a lot of boilerplate code that could be abstracted away
+otherwise.  Alternatives do exist though, such as high-level synthesis tools (HLS), or higher-level
 hardware description languages.
 
 So why not use higher-level HDLs then? They seem to solve all the problems that current HDLs face.
@@ -667,7 +673,34 @@ well.
 
 *** A bit about HLS
 
+Ideally, HLS converts any software code into an equivalent hardware design, meaning one does not
+have to worry about designing any hardware and only has to focus on the functionality of the
+hardware.  In addition to that, this means that a lot of software code can be reused to create
+hardware accelerators, speeding up the design process even more.
+
+However, in practice this does not seem to be the case yet.  For now, the state-of-the-art HLS
+compilers restrict the subset of the input language greatly, and often cannot optimise it optimally.
+The main problem with optimisations is that hardware has a much greater design space which can be
+explored, compared to software.  The HLS compiler therefore has to guess in which direction it
+should optimise, and try and find a Pareto optimal solution.  This is unlikely to be optimal,
+especially if one has various different constraints one could not supply to the HLS tool, making it
+very difficult to then use the generated hardware.  These are currently the main research questions
+in HLS.
+
+One aspect which is often overlooked though, is that HLS also needs to be correct to be useful, as
+it generates designs that are often difficult to check.  One of the main advantages of HLS is also
+that it should be possible to check the correctness of the hardware design purely in software,
+making the design process so much more efficient.  The fact that it might therefore introduce bugs
+in the process, means that the final HLS designs need to be re-verified afterwards.
+
+We have written a [[/papers/hlsspc_latte2021.pdf][workshop paper]] published at LATTE'21 which describes why HLS in particular is an
+important translation to verify.
+
 *** How do we formally verify it?
+
+#+caption: Add a back end branching off the three-address code intermediate language to produce Verilog.
+#+attr_html: :width 500px
+[[/images/toolflow-handdrawn.svg]]
 
 *** Useful links
 
