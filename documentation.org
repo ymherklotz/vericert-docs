@@ -636,9 +636,6 @@ Blog posts:
 :CUSTOM_ID: a-first-look-at-vericert
 :END:
 
-#+attr_html: :width 400px
-[[/images/vericert-logo-handdrawn.svg]]
-
 Compilers are increasingly being relied upon to produce binaries from code without introducing any
 bugs in the process.  Therefore, formally verified compilers like [[https://compcert.org][CompCert]] were introduced to
 formally prove that the compilation process does not change the behaviour of the program.  This
@@ -677,6 +674,10 @@ Ideally, HLS converts any software code into an equivalent hardware design, mean
 have to worry about designing any hardware and only has to focus on the functionality of the
 hardware.  In addition to that, this means that a lot of software code can be reused to create
 hardware accelerators, speeding up the design process even more.
+
+#+caption: Typical HLS flow compared to the standard software flow.
+#+attr_html: :width 500px
+[[/images/hls-flow-handdrawn.svg]]
 
 However, in practice this does not seem to be the case yet.  For now, the state-of-the-art HLS
 compilers restrict the subset of the input language greatly, and often cannot optimise it optimally.
