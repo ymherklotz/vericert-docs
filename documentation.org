@@ -703,6 +703,45 @@ important translation to verify.
 #+attr_html: :width 500px
 [[/images/toolflow-handdrawn.svg]]
 
+We use CompCert, an existing formally verified C compiler, to translate C into 3AC[fn:1], which is
+the starting point of our high-level synthesis pass.  We chose this intermediate language in
+CompCert to branch off of, as it does not make any assumptions on the number of registers available,
+which is ideal for hardware as registers are abundantly available.  In addition to that, each
+instruction in 3AC actually directly corresponds to simple operations that can be implemented in
+hardware.
+
+The process of formally verifying the translation of instructions is quite simple then, we just need
+to prove that the Verilog statement we translate it to corresponds to the instruction.  In most
+cases there is an equivalent operator in Verilog that performs this action, however, in some cases
+they don't quite match up perfectly, in which case we need to prove some properties about integer
+arithmetic to prove that the two operations are the same.[fn:2]
+
+**** Translating the memory model
+
+The main problem in the proof is: how do we translate CompCert's abstract view and description of
+memory to a more concrete implementation of RAM which can subsequently be implemented as a proper
+RAM by the synthesis tool?
+
+Implementation wise this is quite straight-forward.  However, there are some constraints that need
+to be taken into account:
+
+- The memory in hardware needs to be word-addressed for the best performance.
+- Memory in hardware needs to use a proper interface to work.
+
+These two constraints don't really complicate the implementation much, but they do complicate the
+proofs quite considerably.  Firstly, it's not straightforward that /any/ address can even be divided
+by four (to translate it from a byte-addressed memory into an index of a word-addressed array).
+Secondly, it's not clear that the RAM will always behave properly, as one now has to reason about a
+completely different ~always~ block, which will be triggered at all clock edges.
+
+However, this translation is still provable.  The first issue can be simplified by proving that
+loads and stores that are valid always have to be word-aligned, meaning they can then be divided by
+four.
+
+The insertion of the RAM is also provable, because we can design a self-disabling RAM which will
+only be activated when it is being used, making the proof considerably simpler as one doesn't have
+to reason about the RAM when it isn't enabled.
+
 *** Useful links
 
 - [[https://yannherklotz.com/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]]
@@ -735,6 +774,21 @@ to be placed into memory, and are often used in HLS designs.  Proper handling of
 for a larger subset of programs to be compiled, even allowing for larger benchmarks to be used, such
 as CHStone.
 
+#+begin_quote
+Vericert is a formally verified high-level synthesis (HLS) tool written in Coq, which translates C code
+into Verilog hardware designs.  One challenge in HLS is supporting different memory architectures
+and interacting with memory in an optimal way.
+
+Vericert currently lacks support for multiple memories, and instead only constructs one large memory
+which contains all elements of the stack.  Due to this limitation, Vericert mainly inlines all
+function calls and does not support global variables.  This project would be about adding support
+for multiple memories to Vericert and proving the correctness of the improved translation.  This
+would then allow globals to be compiled, which greatly increases the kinds of programs that can be
+translated.
+
+This project would be ideal for students interested in hardware and theorem proving in Coq.
+#+end_quote
+
 *** Type Support
 :PROPERTIES:
 :CUSTOM_ID: type-support
@@ -742,6 +796,33 @@ as CHStone.
 
 It would also be useful to have support for other datatypes in C, such as ~char~ or ~short~, as using
 these small datatypes is also quite popular in HLS to make the final designs more efficient.
+
+#+begin_quote
+Vericert is a formally verified high-level synthesis (HLS) tool written in Coq, which translates C code
+into Verilog hardware designs.  However, it currently only supports 32-bit integer types, which
+limits the effectiveness of HLS, as smaller types cannot be supported and are therefore not
+represented properly.
+
+This project would address this problem by adding support for multiple different types in Vericert,
+and prove the new translation correct in Coq.  Furthermore, the current memory in Vericert also only
+supports 32-bits, so this project could also address that by generalising the memory module and
+supporting smaller memory types.
+#+end_quote
+
+*** Register Allocation
+:PROPERTIES:
+:CUSTOM_ID: register-allocation
+:END:
+
+Register allocation is an optimisation which minimises the register resource usage of the design,
+while still keeping the same throughput in most cases.  Compared to standard software compilers, HLS
+tools do not normally require a lot of register allocation, however, this can still help in a lot of
+cases when registers are used unnecessarily.
+
+#+begin_quote
+Vericert is a formally verified high-level synthesis (HLS) tool written in Coq, which translates C code
+into Verilog hardware designs.
+#+end_quote
 
 *** Memory Partitioning
 :PROPERTIES:
@@ -761,3 +842,10 @@ Loop pipelining is an optimisation to schedule loops, instead of only scheduling
 inside of the loop.  There are two versions of loop pipelining, software and hardware loop
 pipelining.  The former is done purely on instructions, whereas the latter is performed in tandem
 with [[#scheduling][scheduling]].
+
+* Footnotes
+[fn:2] One example is with the ~Oshrximm~ instruction, which is represented using division in
+CompCert, whereas it should actually perform multiple shifts.
+
+[fn:1] Also known as RTL in the CompCert literature, however, we refer to it as 3AC to avoid
+confusion with register-transfer level, often used to describe the target of the HLS tool.
