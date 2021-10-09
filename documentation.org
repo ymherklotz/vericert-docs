@@ -627,7 +627,7 @@ A small standalone Coq file that exhibits many of the style points.
 
 Blog posts:
 
-** TODO A First Look at Vericert :introduction:summary:@article:
+** A First Look at Vericert :introduction:summary:@article:
 :PROPERTIES:
 :EXPORT_DATE: 2021-09-21
 :EXPORT_FILE_NAME: a-first-look-at-vericert
@@ -744,8 +744,9 @@ to reason about the RAM when it isn't enabled.
 
 *** Useful links
 
-- [[https://yannherklotz.com/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]]
-- [[https://github.com/ymherklotz/vericert][Github repository]]
+- [[https://yannherklotz.com/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]].
+- [[https://youtu.be/clPiKbKVlUA][OOPSLA'21 presentation]].
+- [[https://github.com/ymherklotz/vericert][Github repository]].
 
 * Future Work
 
