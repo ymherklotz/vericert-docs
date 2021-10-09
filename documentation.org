@@ -632,7 +632,7 @@ Blog posts:
 :EXPORT_DATE: 2021-10-09
 :EXPORT_FILE_NAME: a-first-look-at-vericert
 :EXPORT_HUGO_SECTION: blog
-:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary "Vericert is a formally verified high-level synthesis tool, translating C code into a hardware design expressed in Verilog."
+:EXPORT_HUGO_CUSTOM_FRONT_MATTER: :summary "Vericert is a formally verified high-level synthesis tool, translating C code into a hardware design expressed in Verilog." :aliases '("/2021/09/a-first-look-at-vericert/")
 :CUSTOM_ID: a-first-look-at-vericert
 :END:
 
