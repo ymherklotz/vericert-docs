@@ -744,7 +744,7 @@ to reason about the RAM when it isn't enabled.
 
 *** Useful links
 
-- [[https://yannherklotz.com/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]].
+- {{{link([[/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]],[[./static/papers/fvhls_oopsla21.pdf][OOPSLA'21 preprint]])}}}.
 - [[https://youtu.be/clPiKbKVlUA][OOPSLA'21 presentation]].
 - [[https://github.com/ymherklotz/vericert][Github repository]].
 
