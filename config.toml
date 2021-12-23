@@ -15,9 +15,14 @@ pygmentsUseClasses = true
 [menu]
 
 [[menu.after]]
-  name = "Github"
+  name = "Github mirror"
   url = "https://github.com/ymherklotz/vericert"
   weight = 10
+
+[[menu.after]]
+  name = "Git repository"
+  url = "https://sr.ht/~ymherklotz/vericert"
+  weight = 20
 
 [params]
   BookTheme = "auto"

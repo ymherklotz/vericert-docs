@@ -34,7 +34,14 @@ have all been proven correct, providing a verified translation from C to Verilog
   Verification of High-Level Synthesis. In /Proc. ACM Program. Lang./ 5, OOPSLA, 2021. [{{{link([[/papers/fvhls_oopsla21.pdf][pdf]],[[./static/papers/fvhls_oopsla21.pdf][pdf]])}}}]
 
 - LATTE '21 :: Yann Herklotz and John Wickerson. High-level synthesis tools should be proven
-  correct. In /Workshop on Languages, Tools, and Techniques for Accelerator Design/, 2021. [{{{link([[/papers/hlsspc_latte2021.pdf][pdf]],[[./static/papers/hlsspc_latte2021.pdf][pdf]])}}}]
+  correct. In /Workshop on Languages, Tools, and Techniques for Accelerator
+  Design/, 2021. [{{{link([[/papers/hlsspc_latte2021.pdf][pdf]],[[./static/papers/hlsspc_latte2021.pdf][pdf]])}}}]
+
+** Mailing lists
+
+For discussions, you can join the following mailing list: [[https://lists.sr.ht/~ymherklotz/vericert-discuss][lists.sr.ht/~ymherklotz/vericert-discuss]].
+
+For contributing patches to the [[https://sr.ht/~ymherklotz/vericert/][sourcehut]] repository: [[https://lists.sr.ht/~ymherklotz/vericert-devel][lists.sr.ht/~ymherklotz/vericert-devel]].
 
 * Index
 :PROPERTIES:
