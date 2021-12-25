@@ -10,7 +10,8 @@
 (require 'ox-hugo)
 
 (setq org-export-use-babel 'inline-only
-      org-confirm-babel-evaluate nil)
+      org-confirm-babel-evaluate nil
+      org-export-with-broken-links t)
 
 (defun ymhg/link (arg1 arg2)
   (cond

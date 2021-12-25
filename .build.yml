@@ -1,6 +1,6 @@
 image: debian/testing
 packages:
-  - emacs
+  - emacs-nox
   - hugo
   - zip
 sources:
