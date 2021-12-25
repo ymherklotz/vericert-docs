@@ -1,0 +1,23 @@
+image: debian/testing
+packages:
+  - emacs
+  - hugo
+  - zip
+sources:
+  - https://git.sr.ht/~ymherklotz/vericert-docs
+secrets:
+  - fbcab77b-bd56-4356-a6b3-54c656f2b364
+tasks:
+  - build: |
+      cd vericert-docs
+      emacs --batch --no-init --file documentation.org --load publish.el
+      hugo --minify
+  - deploy: |
+      cd vericert-docs
+      zip -r public.zip public
+      set +x
+      key=$(cat ~/.netlify-key)
+      curl -H "Content-Type: application/zip" \
+           -H "Authorization: Bearer $key" \
+           --data-binary "@public.zip" \
+           https://api.netlify.com/api/v1/sites/vericert-docs.netlify.app/deploys
