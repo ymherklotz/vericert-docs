@@ -1,14 +1,14 @@
 // Themes
 @mixin theme-light {
-  --gray-100: #fffff8;
+  --gray-100: #fff5db;
   --gray-200: #f2e6c1;
   --gray-500: #e5dab7;
 
-  --color-link: #33a083;
-  --color-visited-link: #33a083;
+  --color-link: #29876e;
+  --color-visited-link: #29876e;
 
-  --body-background: #fff8e5;
-  --body-font-color: #0b1326;
+  --body-background: #fffbf2;
+  --body-font-color: #000;
 
   --icon-filter: none;
 
@@ -26,7 +26,7 @@
   --color-visited-link: #80e5ca;
 
   --body-background: #363f54;
-  --body-font-color: #fffbf2;
+  --body-font-color: #fff;
 
   --icon-filter: brightness(0) invert(1);
 
