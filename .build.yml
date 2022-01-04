@@ -20,4 +20,4 @@ tasks:
       curl -H "Content-Type: application/zip" \
            -H "Authorization: Bearer $key" \
            --data-binary "@public.zip" \
-           https://api.netlify.com/api/v1/sites/vericert-docs.netlify.app/deploys
+           https://api.netlify.com/api/v1/sites/vericert-docs.netlify.app/deploys >/dev/null 2>&1
