@@ -9,13 +9,7 @@
 (require 'ox)
 (require 'ox-hugo)
 
-(setq org-export-use-babel 'inline-only
-      org-confirm-babel-evaluate nil
+(setq org-confirm-babel-evaluate nil
       org-export-with-broken-links t)
-
-(defun ymhg/link (arg1 arg2)
-  (cond
-   ((eq 'hugo org-export-current-backend) arg1)
-   (t arg2)))
 
 (org-hugo-export-wim-to-md :all-subtrees)
