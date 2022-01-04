@@ -1,23 +1,17 @@
 @media (prefers-color-scheme: light) {
     @import "_syntax-light.scss";
-
-    #book-logo {
-        background-image: url("/vericert-main.svg");
-        height: 5rem;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+    #book-logo { background-image: url("/vericert-main.svg"); }
 }
 
 @media (prefers-color-scheme: dark) {
     @import "_syntax-dark.scss";
+    #book-logo { background-image: url("/vericert-white.svg"); }
+}
 
-    #book-logo {
-        background-image: url("/vericert-white.svg");
-        height: 5rem;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
+#book-logo {
+    height: 5rem;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .book-brand {
@@ -53,6 +47,12 @@
 .markdown .book-by-line {
     margin-top: 0;
     margin-bottom: 0.2em;
+}
+
+.markdown code {
+    background: var(--gray-100);
+    padding: 0;
+    border-radius: 0;
 }
 
 img {
