@@ -3,10 +3,12 @@
 (add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-refresh-contents)
-(package-install 'ox-hugo)
 
+(package-install 'ox-hugo)
 (package-install 'org)
 (package-install 'org-contrib)
+
+(require 'org)
 (require 'ox)
 (require 'ox-hugo)
 

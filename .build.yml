@@ -10,7 +10,7 @@ secrets:
 tasks:
   - build: |
       cd vericert-docs
-      emacs --batch --no-init --file documentation.org --load publish.el
+      emacs --batch --file documentation.org --load publish.el
       hugo --minify
   - deploy: |
       cd vericert-docs
