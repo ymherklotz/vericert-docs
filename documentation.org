@@ -634,7 +634,7 @@ A small standalone Coq file that exhibits many of the style points.
 
 Blog posts:
 
-** A First Look at Vericert :introduction:summary:article:
+** A First Look at Vericert :introduction:summary:@article:
 :PROPERTIES:
 :EXPORT_DATE: 2021-10-09
 :EXPORT_FILE_NAME: a-first-look-at-vericert
@@ -684,7 +684,7 @@ hardware accelerators, speeding up the design process even more.
 
 #+caption: Typical HLS flow compared to the standard software flow.
 #+attr_html: :width 500px
-[[/images/hls-flow-handdrawn.svg]]
+[[./static/images/hls-flow-handdrawn.svg]]
 
 However, in practice this does not seem to be the case yet.  For now, the state-of-the-art HLS
 compilers restrict the subset of the input language greatly, and often cannot optimise it optimally.
@@ -701,14 +701,14 @@ that it should be possible to check the correctness of the hardware design purel
 making the design process so much more efficient.  The fact that it might therefore introduce bugs
 in the process, means that the final HLS designs need to be re-verified afterwards.
 
-We have written a [[/papers/hlsspc_latte2021.pdf][workshop paper]] published at LATTE'21 which describes why HLS in particular is an
+We have written a [[./static/papers/hlsspc_latte2021.pdf][workshop paper]] published at LATTE'21 which describes why HLS in particular is an
 important translation to verify.
 
 *** How do we formally verify it?
 
 #+caption: Add a back end branching off the three-address code intermediate language to produce Verilog.
 #+attr_html: :width 500px
-[[/images/toolflow-handdrawn.svg]]
+[[./static/images/toolflow-handdrawn.svg]]
 
 We use CompCert, an existing formally verified C compiler, to translate C into 3AC[fn:1], which is
 the starting point of our high-level synthesis pass.  We chose this intermediate language in
