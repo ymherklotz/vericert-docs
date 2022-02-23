@@ -1,4 +1,4 @@
-#+title: Documentation
+#+title: Vericert Documentation
 #+author: Yann Herklotz
 #+email: git@ymhg.org
 #+setupfile: setup.org
