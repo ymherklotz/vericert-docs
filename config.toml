@@ -17,7 +17,7 @@ pygmentsUseClasses = true
 [[menu.after]]
   name = "Manual"
   url = "/manual"
-  weight = 10
+  weight = 5
 
 [[menu.after]]
   name = "Github Mirror"
