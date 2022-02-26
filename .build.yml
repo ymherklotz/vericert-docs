@@ -3,11 +3,19 @@ packages:
   - emacs-nox
   - hugo
   - zip
+  - rsync
 sources:
   - https://git.sr.ht/~ymherklotz/vericert-docs
 secrets:
   - fbcab77b-bd56-4356-a6b3-54c656f2b364
+  - f1c07b45-32bd-4559-b370-28e59e4c11e1
 tasks:
+  - init: |
+      cd vericert-docs/static
+      sshopts="ssh -o StrictHostKeyChecking=no"
+      rsync --rsh="$sshopts" zk@leika.ymhg.org:~/docs.tar.xz .
+      tar xvf docs.tar.xz
+      rm docs.tar.xz
   - build: |
       cd vericert-docs
       emacs --batch --file content.org --load publish.el

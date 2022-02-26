@@ -1,3 +1,10 @@
 .DS_Store
 
 /content/
+/resources/
+
+/static/manual/
+/static/man/
+/static/src/
+
+*.lock
