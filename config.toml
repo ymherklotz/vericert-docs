@@ -15,6 +15,11 @@ pygmentsUseClasses = true
 [menu]
 
 [[menu.after]]
+  name = "Manual"
+  url = "/manual"
+  weight = 10
+
+[[menu.after]]
   name = "Github Mirror"
   url = "https://github.com/ymherklotz/vericert"
   weight = 10
